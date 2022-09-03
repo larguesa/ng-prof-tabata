@@ -5,8 +5,53 @@
     </a>
   </div>
 </nav>
-<div class="container-fluid mt-2">
-  <h2>Contador: {{ counter }}s</h2>
-  <h3>{{ getMinutos() }}'{{ getSegundos() }}''</h3>
-  <button (click)="restartCounter()">Reiniciar</button>
+<div class="container-fluid mt-3">
+  <div class="card text-bg-secondary" *ngIf="counter < 0">
+    <h2 class="card-header">PREPARE-SE</h2>
+    <div class="card-body">
+      <h2>{{ getAbs() }} segundos</h2>
+    </div>
+  </div>
+  <div *ngIf="getRound() > 8">
+    <div class="card text-bg-secondary mb-3">
+      <div class="card-body text-center">
+        <h2>FINALIZADO!</h2>
+        <button
+          type="button"
+          class="btn btn-primary mt-3"
+          (click)="restartCounter()"
+        >
+          Começar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card" *ngIf="counter > 0 && getRound() <= 8">
+    <h2 class="card-header">
+      Round <b>{{ getRound() }}</b> / 8
+    </h2>
+    <div class="card-body">
+      <!-- Descanso -->
+      <div class="card text-bg-warning mb-3" *ngIf="getSeconds() > 20">
+        <div class="card-body text-center">
+          <h2>DESCANSE</h2>
+          <h1>{{ getSeconds() - 20 }}</h1>
+        </div>
+      </div>
+      <!-- Descanso -->
+      <div class="card text-bg-success mb-3" *ngIf="getSeconds() <= 20">
+        <div class="card-body text-center">
+          <h2>EXERCITE-SE</h2>
+          <h1>{{ getSeconds() }}</h1>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary mt-3"
+        (click)="restartCounter()"
+      >
+        Reiniciar
+      </button>
+    </div>
+  </div>
 </div>
