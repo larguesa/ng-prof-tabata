@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-stopwatch-fill"></i>&nbsp;The Prof. Tabata
+    </a>
+  </div>
+</nav>
+<div class="container-fluid mt-2">
+  <h2>Contador: {{ counter }}s</h2>
+  <h3>{{ getMinutos() }}'{{ getSegundos() }}''</h3>
+  <button (click)="restartCounter()">Reiniciar</button>
+</div>
